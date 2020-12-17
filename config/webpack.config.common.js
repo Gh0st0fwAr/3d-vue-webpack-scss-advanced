@@ -20,6 +20,7 @@ const webpackConfig = {
 			'@': helpers.root('src')
 		}
 	},
+
 	module: {
 		rules: [{
 				test: /\.vue$/,
@@ -32,23 +33,21 @@ const webpackConfig = {
 				include: [helpers.root('src')]
 			},
 			{
-				test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
-				use: [{
-					loader: 'file-loader',
-					options: {
-						name: '[name].[ext]',
-						// outputPath: 'fonts/',
-						sourceMap: isDev
-					}
-				}]
+				test: /\.css$/,
+				use: [
+					isDev ? 'vue-style-loader' : MiniCSSExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options: {
+							sourceMap: isDev
+						}
+					},
+				]
 			},
 			{
-				test: /\.scss$/i,
+				test: /\.scss$/,
 				use: [
-					// isDev ? 'vue-style-loader' : MiniCSSExtractPlugin.loader,
-					{
-						loader: 'style-loader',
-					},
+					isDev ? 'vue-style-loader' : MiniCSSExtractPlugin.loader,
 					{
 						loader: 'css-loader',
 						options: {
@@ -63,17 +62,65 @@ const webpackConfig = {
 					}
 				]
 			},
+			{
+				test: /\.sass$/,
+				use: [
+					isDev ? 'vue-style-loader' : MiniCSSExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options: {
+							sourceMap: isDev
+						}
+					},
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: isDev
+						}
+					}
+				]
+			},
+			{
+				test: /\.(woff|woff2)$/,
+				use: {
+				  loader: 'url-loader',
+				},
+			 },
+			{
+			  test: /\.(eot|woff|woff2|svg|ttf|gif|png|jpeg|jpg)([\?]?.*)$/,
+			  use: {
+				  loader: "file-loader",
+				  options: {
+					  esModule: false
+				  	}
+			  }
+			},
+			// { 
+			// 	test: /\.(png|woff|woff2|eot|ttf|svg)$/, use: ['url-loader?limit=100000'] 
+			// }
 		]
 	},
 	plugins: [
 		new VueLoaderPlugin(),
 		new HtmlPlugin({
 			template: 'index.html',
-			chunksSortMode: 'none'
+			chunksSortMode: 'dependency'
 		}),
 		new GoogleFontsPlugin({
-			fonts: [
-				{family: "Roboto", variants: ["300", "400", "500", "bold"]}
+			fonts: [{
+					family: "Roboto",
+					variants: ["300", "400", "500", "bold"],
+					"subsets": [
+						'latin-ext',
+						'cyrillic'
+					]
+				},
+				{
+					family: 'Press Start 2P',
+					variants: ["400"]
+				},
+				
+				// {family: "Pixelar", variants: ['500']}
 			],
 			options: {
 				name: "fonts",

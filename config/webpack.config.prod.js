@@ -15,9 +15,9 @@ const webpackConfig = merge(commonConfig, {
 	mode: 'production',
 	output: {
 		path: helpers.root('./dist'),
-		publicPath: '/',
-		filename: 'js/main.js',
-		chunkFilename: 'js/[id].js'
+		publicPath: './',
+		filename: 'main.js',
+		chunkFilename: 'js/[id][hash].js'
 	},
 	optimization: {
 		runtimeChunk: 'single',
@@ -29,8 +29,7 @@ const webpackConfig = merge(commonConfig, {
 							removeAll: true
 						}
 					}],
-				},
-				safe: true
+				}
 			}),
 			new UglifyJSPlugin({
 				cache: true,
@@ -62,8 +61,8 @@ const webpackConfig = merge(commonConfig, {
 	plugins: [
 		new webpack.EnvironmentPlugin(environment),
 		new MiniCSSExtractPlugin({
-			filename: 'css/nms4.css',
-			chunkFilename: 'css/[id].css'
+			filename: 'css/[name].[hash].css',
+			chunkFilename: 'css/[id][hash].css'
 		}),
 		new webpack.HashedModuleIdsPlugin(),
 	]
@@ -72,10 +71,10 @@ const webpackConfig = merge(commonConfig, {
 if (!isProd) {
 	webpackConfig.devtool = 'source-map';
 
-	if (process.env.npm_config_report) {
-		const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-		webpackConfig.plugins.push(new BundleAnalyzerPlugin());
-	}
+	// if (process.env.npm_config_report) {
+	// 	const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+	// 	webpackConfig.plugins.push(new BundleAnalyzerPlugin());
+	// }
 }
 
 module.exports = webpackConfig;
