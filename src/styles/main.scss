@@ -3,5 +3,16 @@
 @import './normalize.scss';
 
 
-// @import './layout/*.scss'
-@import './layout/example.scss'
+// @import './layout/example.scss';
+// @import './layout/example2.scss';
+
+@import './layout/wrapper.scss';
+@import './layout/mainpage.scss';
+@import './layout/menu.scss';
+@import './layout/start.scss';
+@import './layout/story.scss';
+@import './layout/char.scss';
+@import './layout/news.scss';
+@import './layout/sound.scss';
+@import './layout/dlc.scss';
+@import './layout/auth.scss';

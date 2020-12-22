@@ -28,7 +28,7 @@ const webpackConfig = merge(commonConfig, {
 	plugins: [
 		new webpack.EnvironmentPlugin(environment),
 		new webpack.HotModuleReplacementPlugin(),
-		new BundleAnalyzerPlugin(),
+		// new BundleAnalyzerPlugin(),
 	],
 	devServer: {
 		compress: true,
@@ -37,24 +37,19 @@ const webpackConfig = merge(commonConfig, {
 		open: true,
 		overlay: true,
 		host: 'localhost',
-		port: 8080,
+		port: 8000,
 		quiet: true,
 		clientLogLevel: 'error',
 		stats: {
 			normal: true
 		},
 		proxy: {
-			'/api': {
-				target: 'http://172.27.155.13:200/',
-				changeOrigin: true,
-				secure: false
-			},
-			'/static': {
-				target: 'http://172.27.155.13:200/',
-				changeOrigin: true,
-				secure: false
-			},
-		}
+				'/api': {
+					target: 'http://172.24.155.13:1337',
+					changeOrigin: true,
+					secure: false
+				},
+			}
 	},
 	watchOptions: {
 		aggregateTimeout: 200,
