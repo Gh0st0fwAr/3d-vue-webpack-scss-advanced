@@ -29,6 +29,34 @@
 
 .news__arrow {
    position: absolute;
+   top: 50%;
+   // transform: translateY(50%);
+   cursor: pointer;
+   opacity: 0.7;
+   transition: 0.3s;
+
+   &:hover {
+      opacity: 1;
+      transition: 0.3s;
+   }
+
+   &:active {
+      outline: none;
+   }
+}
+
+.news__arrow--prev {
+   left: 0;
+   transform: translate(25%, -70%) rotate(180deg);
+}
+
+.news__arrow--next {
+   right: 0;
+   transform: translate(-25%, -70%);
+}
+
+.news__arrow--disabled {
+   filter: grayscale(100%);
 }
 
 .news__swiper {

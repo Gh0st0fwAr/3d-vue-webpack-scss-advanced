@@ -3,29 +3,17 @@
       <div class="news__background"></div>
       <div class="news__list">
          <div class="news__arrow news__arrow--prev">
-            <svg class="news__svg">
-               <use src="../images/vectorarrow.svg"></use>
-            </svg>
+            <img src="../images/vectorarrow.svg">
          </div>
-         <div class="news__arrow news__arrow--next"></div>
+         <div class="news__arrow news__arrow--next">
+            <img src="../images/vectorarrow.svg">
+         </div>
          <swiper ref="swiper" :options="swiperOptions" class="news__swiper">
-            <swiperSlide  class="news__node">
-               <router-link :to="'/news/node=1'">
+            <swiperSlide v-for="item in posts" class="news__node">
+               <router-link :to="`/news/node=${item.id}`">
                   <div class="news__image"><img src="../images/twoplanets.png"></div>
-                  <div class="news__title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, atque?</div>
+                  <div class="news__title">{{item.preview}}</div>
                </router-link>
-            </swiperSlide>
-            <swiperSlide  class="news__node">
-               <div class="news__image"><img src="../images/twoplanets.png"></div>
-               <div class="news__title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, atque?</div>
-            </swiperSlide>
-            <swiperSlide  class="news__node">
-               <div class="news__image"><img src="../images/twoplanets.png"></div>
-               <div class="news__title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, atque?</div>
-            </swiperSlide>
-            <swiperSlide  class="news__node">
-               <div class="news__image"><img src="../images/twoplanets.png"></div>
-               <div class="news__title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, atque?</div>
             </swiperSlide>
             
          </swiper>
@@ -51,7 +39,8 @@ export default {
                prevEl: '.news__arrow--prev',
                disabledClass: 'news__arrow--disabled'
             }
-         }
+         },
+         posts: [],
       }
    },
    computed: {
@@ -63,6 +52,14 @@ export default {
       swiper,
       swiperSlide
    },
+   created() {
+      var vm = this;
+      vm.axios.get(vm.axios.defaults.baseURL + '/api/posts').then(r => {
+            vm.posts = r.data;
+         }).catch(err => {
+            console.log(err.response.data.message)
+      })
+   }
    // directives: {
    //    swiper: directive
    // }

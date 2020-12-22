@@ -3,18 +3,18 @@
       <div class="dlc__title">DLC & MODS</div>
       <div class="dlc__list">
 
-         <div class="dlc__row">
+         <div v-for="item in mods" class="dlc__row">
             <div class="dlc__header">
-               <div class="dlc__subtitle">Name of DLC/Mod</div>
+               <div class="dlc__subtitle">{{item.name}}</div>
                <img src="../images/download.svg" class="dlc__img">
             </div>
             <div @click="openCut()" class="dlc__prev">
                <div><img class="dlc__sign" src="../images/dlcarrow.svg"></div>
-               <div class="dlc__text">Lorem, ipsum dolor.</div>
+               <div class="dlc__text">Open spoiler</div>
             </div>
             <div class="dlc__desc">
                <div class="dlc__fulltext">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, ipsum esse. Assumenda dicta eveniet error dolores, tenetur eos, amet esse ullam sequi minima nulla consectetur, sunt soluta totam atque beatae.
+                  {{item.description}}
                </div>
             </div>
          </div>
@@ -25,6 +25,11 @@
 
 <script>
 export default {
+   data() {
+      return {
+         mods: [],
+      }
+   },
    methods: {
       openCut() {
          var target = event.target;
@@ -42,6 +47,14 @@ export default {
          }         
 
       }
+   },
+   created() {
+      var vm = this;
+      vm.axios.get(vm.axios.defaults.baseURL + '/api/mods').then(r => {
+            vm.mods = r.data;
+         }).catch(err => {
+            console.log(err.response.data.message)
+         })
    }
 }
 </script>
