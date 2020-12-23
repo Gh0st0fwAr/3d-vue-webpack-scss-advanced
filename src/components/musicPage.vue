@@ -46,6 +46,7 @@
 <script>
 
 import Aplayer from 'vue-aplayer';
+
 import gachi from '../sounds/gachi.mp3'
 import gachiPic from '../images/gachi.png'
 

@@ -96,6 +96,11 @@
    font-size: 14px;
    margin-top: 4px;
    color: red;
+   display: none;
+}
+
+.form__error--submit {
+   display: unset;
 }
 
 .form__success {

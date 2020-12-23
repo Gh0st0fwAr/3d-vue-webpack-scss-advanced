@@ -80,7 +80,6 @@ export default {
       moveSlider(direction) {
          
          const childNodes = document.querySelectorAll('.slider__image')
-         console.log(childNodes[0].offsetWidth)
          this.sliderChilds = 0;
          childNodes.forEach(child => {
             this.sliderChilds += 1;
@@ -109,19 +108,7 @@ export default {
       }
    },
    mounted() {
-      // console.log(this.$refs.slider.offsetWidth)
-      // const childNodes = document.querySelectorAll('.slider__image')
-      // console.log(childNodes[0].offsetWidth)
-      // this.sliderChilds = 0;
-      // childNodes.forEach(child => {
-      //    this.sliderChilds += 1;
-      // })
-      // this.sliderStep = childNodes[0].offsetWidth
-      // this.sliderWidth = childNodes[0].offsetWidth * this.sliderChilds + 'px'
       var vm = this;
-  
-      localStorage.getItem('token')
-      // vm.axios.default.headers.common['Authorization'] = `Bearer ${r.data.accessToken}`
       
  
    }

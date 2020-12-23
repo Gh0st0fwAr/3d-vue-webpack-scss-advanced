@@ -34,7 +34,6 @@ export default {
       openCut() {
          var target = event.target;
          var sign = target.firstChild.firstChild;
-         console.log(target.nextElementSibling)
          var text = target.nextElementSibling;
          var height = text.firstChild.clientHeight;
 

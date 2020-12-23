@@ -22,8 +22,7 @@ const webpackConfig = merge(commonConfig, {
 		runtimeChunk: 'single',
 		splitChunks: {
 			chunks: 'all'
-		},
-		
+		},		
 	},
 	plugins: [
 		new webpack.EnvironmentPlugin(environment),

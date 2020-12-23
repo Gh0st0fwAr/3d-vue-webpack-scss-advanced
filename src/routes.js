@@ -10,7 +10,8 @@ import newsAdvanced from '@/components/newsAdvanced.vue'
 import dlcPage from '@/components/dlcPage.vue'
 import login from '@/components/login.vue'
 import reg from '@/components/reg.vue'
-
+import training from '@/components/training.vue'
+ 
 
 const routes = [
    {
@@ -78,6 +79,11 @@ const routes = [
       name: 'Reg',
       component: reg
    },
+   {
+      path: '/training',
+      name: 'training',
+      component: training
+   }
 
 
 ]

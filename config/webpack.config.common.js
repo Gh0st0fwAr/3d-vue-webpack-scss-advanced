@@ -81,12 +81,6 @@ const webpackConfig = {
 				]
 			},
 			{
-				test: /\.(woff|woff2)$/,
-				use: {
-				  loader: 'url-loader',
-				},
-			 },
-			{
 			  test: /\.(eot|woff|woff2|svg|ttf|gif|png|jpeg|jpg|mp3|mp4|wav)([\?]?.*)$/,
 			  use: {
 				  loader: "file-loader",
@@ -95,9 +89,6 @@ const webpackConfig = {
 				  	}
 			  }
 			},
-			// { 
-			// 	test: /\.(png|woff|woff2|eot|ttf|svg)$/, use: ['url-loader?limit=100000'] 
-			// }
 		]
 	},
 	plugins: [

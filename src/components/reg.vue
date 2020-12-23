@@ -70,13 +70,9 @@ export default {
       submitForm() {
          var vm = this;
          vm.$v.$touch();
-            console.log(vm.username.toUpperCase())
-            console.log(vm.mail.toUpperCase())
-            console.log(vm.password.toUpperCase())
          if (vm.$v.$invalid) {
             vm.submitStatus = 'Please, fiill out the form correctly'
          } else {
-            const url = window.location.host;
             vm.axios.post(vm.axios.defaults.baseURL + '/api/auth/signup', {
                "username": vm.username.toUpperCase(),
                "email": vm.mail.toUpperCase(),
